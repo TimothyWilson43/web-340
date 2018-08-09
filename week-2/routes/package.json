@@ -1,0 +1,13 @@
+package.json:
+
+{
+
+  "name": "hello-world",
+
+  "author": "Dave Wilson",
+
+  "private": true,
+
+  "dependencies": { }
+
+}
