@@ -1,0 +1,11 @@
+{
+    "name": "routes",
+    "author": "Dave Wilson",
+    "private": true,
+    "main": "wilson-assignments-2.4.js",
+    "dependencies": {
+        "bootstrap": "^4.1.3",
+        "ejs": "^2.6.1",
+        "express": "^4.16.3"
+    }
+}
