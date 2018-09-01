@@ -1,0 +1,9 @@
+{
+    "name": "if-else-render",
+    "author": "Dave Wilson",
+    "private": true,
+    "dependencies": {
+        "ejs": "^2.6.1",
+        "express": "^4.16.3"
+    }
+}
