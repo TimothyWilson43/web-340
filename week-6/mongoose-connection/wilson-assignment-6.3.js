@@ -1,4 +1,13 @@
- //require
+/*
+============================================
+; Title:  Assignment 5.3
+; Author: Timothy Wilson
+; Date:   07 Sep 2018
+; Modified By: Timothy Wilson
+; Description: This program demonstrates the
+; use of Mongoose Databases.
+;===========================================
+*/ 
 
  var express = require('express');
  var http = require('http');
