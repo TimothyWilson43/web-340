@@ -9,7 +9,7 @@
 ;===========================================
 */
 
-var fruits = require("../fruits");
+var fruits = require("../wilson-fruits");
 
 var chai = require("chai");
 
