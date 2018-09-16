@@ -1,3 +1,14 @@
+/*
+============================================
+; Title:  Assignment 7.3
+; Author: Timothy Wilson
+; Date:   16 Sep 2018
+; Modified By: Timothy Wilson
+; Description: This program demonstrates the
+; use of chai.
+;===========================================
+*/
+
 var fruits = require("../fruits");
 
 var chai = require("chai");
