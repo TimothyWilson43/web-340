@@ -1,0 +1,9 @@
+{
+    "name": "chai-example",
+    "author": "Dave Wilson",
+    "private": true,
+    "dependencies": {
+        "chai": "^4.1.2",
+        "mocha": "^5.2.0"
+    }
+}
