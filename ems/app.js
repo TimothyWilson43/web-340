@@ -11,11 +11,14 @@
 var express = require("express");
 var http = require("http");
 var path = require("path");
+var helmet = require("helmet");
 var logger = require("morgan");
+var mongoose = require("mongoose");
 
 var app = express();
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(helmet.xssFilter());
 app.use(logger("short"));
 
 
@@ -46,6 +49,16 @@ app.get("/new", function (request, response) {
 
 });
 
+app.get("/", function(request, response) {
+
+    response.render("index", {
+
+        message: "XSS Prevention Example"
+
+    });
+
+});
+
 //starting server
 
 http.createServer(app).listen(8000, function () {
@@ -54,7 +67,7 @@ http.createServer(app).listen(8000, function () {
 
 // mLab connection
 
-var mongoDB = "<mongodb://wilsonxchevy:Meatball33!!@ds249942.mlab.com:49942/ems>";
+var mongoDB = "<mongodb://wilsonxchevy:Meatball11!!@ds249942.mlab.com:49942/ems>";
 
 mongoose.connect(mongoDB, {
 

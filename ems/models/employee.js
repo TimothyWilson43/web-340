@@ -11,13 +11,9 @@ var employeeSchema = new Schema({
 
 
 // define the employee model
-var Employee = mongoose.model("Employee", fruitSchema);
+var Employee = mongoose.model("Employee", employeeSchema);
 
 
 // expose the employee to calling files
 module.exports = Employee;
 
-var employee = new Employee({
-
-    name: "Dave"
-});

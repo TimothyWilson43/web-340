@@ -16,3 +16,4 @@ function fruits(str) {
 }
 
 module.exports = fruits;
+
