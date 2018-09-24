@@ -15,12 +15,29 @@ var helmet = require("helmet");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
+
 var app = express();
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(helmet.xssFilter());
 app.use(logger("short"));
 
+// mLab connection
+var mongoDB = "mongodb://wilsonxchevy:Meatball11!!@ds249942.mlab.com:49942/ems";
+mongoose.connect(mongoDB, {
+    useMongoClient: true
+});
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connected error: "));
+db.once("open", function() {
+    console.log("Application connected to mLab MongoDB instance");
+});
+
+
+// application
+var app = express();
+app.use(logger("short"));
 
 //calling views
 
@@ -59,30 +76,7 @@ app.get("/", function(request, response) {
 
 });
 
-//starting server
-
-http.createServer(app).listen(8000, function () {
-    console.log("Application started on port 8000!");
-});
-
-// mLab connection
-
-var mongoDB = "<mongodb://wilsonxchevy:Meatball11!!@ds249942.mlab.com:49942/ems>";
-
-mongoose.connect(mongoDB, {
-
-    useMongoClient: true
-
-});
-
-mongoose.Promise = global.Promise;
-
-var db = mongoose.connection;
-
-db.on("error", console.error.bind(console, "MongoDB connection error: "));
-
-db.once("open", function () {
-
-    console.log("Application connected to mLab MongoDB instance");
-
+// create server
+http.createServer(app).listen(8080, function() {
+    console.log("Application connected to port 8080!");
 });
