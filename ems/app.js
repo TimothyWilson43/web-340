@@ -14,13 +14,39 @@ var path = require("path");
 var helmet = require("helmet");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var csrf = require("csurf");
 
+// CSURF Protection setup
+var csrfProtection = csrf({ cookie: true });
 
 var app = express();
+
 app.set("views", path.resolve(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(helmet.xssFilter());
+app.set("view engine", "ejs");  
 app.use(logger("short"));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(cookieParser());
+app.use(csrfProtection);
+app.use(function (request, response, next) {
+    var token = request.csrfToken();
+    response.cookie('XSRF-TOKEN', token);
+    response.locals.csrfToken = token;
+    next();
+});
+app.get("/", function(request, response) {
+    response.render("index", {
+        message: "New Employee Entry Page"
+    });
+});
+
+app.post("/process", function(request, response) {
+    console.log(request.body.txtName);
+    response.redirect("/");
+});
 
 // mLab connection
 var mongoDB = "mongodb://wilsonxchevy:Meatball11!!@ds249942.mlab.com:49942/ems";
@@ -30,7 +56,7 @@ mongoose.connect(mongoDB, {
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connected error: "));
-db.once("open", function() {
+db.once("open", function () {
     console.log("Application connected to mLab MongoDB instance");
 });
 
@@ -40,6 +66,7 @@ var app = express();
 app.use(logger("short"));
 
 //calling views
+
 
 app.get("/", function (request, response) {
     response.render("index", {
@@ -66,7 +93,8 @@ app.get("/new", function (request, response) {
 
 });
 
-app.get("/", function(request, response) {
+
+app.get("/", function (request, response) {
 
     response.render("index", {
 
@@ -77,6 +105,6 @@ app.get("/", function(request, response) {
 });
 
 // create server
-http.createServer(app).listen(8080, function() {
+http.createServer(app).listen(8080, function () {
     console.log("Application connected to port 8080!");
 });

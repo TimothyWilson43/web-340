@@ -18,9 +18,22 @@
         <h2>Welcome to the
             <%= title %>!
         </h2>
+
+        <form method="post" action="/process">
+            <div class="form-group">
+                txtName">Name:
+                <label for=" txtName" name="txtName" />
+            </div>
+            <div class="form-group">
+
+                <!-- CSRF token -->
+                <input name=_csrf" value="<%= csrfToken %>" type="hidden">
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
+            </div>
+
+        </form>
     </div>
     <% include footer %>
-
 </body>
 
 </html>
