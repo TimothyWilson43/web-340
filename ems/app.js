@@ -33,7 +33,7 @@ db.once("open", function () {
 
 // CSURF Protection setup
 var csrfProtection = csrf({ cookie: true });
-
+console.log(csrfProtection);
 
 // initialize the express application
 var app = express();
@@ -48,6 +48,7 @@ app.use(helmet.xssFilter());
 app.use(csrfProtection);
 app.use(function(request, response, next) {
     var token = request.csrfToken();
+    console.log(token);
     response.cookie('XSRF-TOKEN', token);
     response.locals.csrfToken = token;
     next();
@@ -61,7 +62,7 @@ app.set("port", process.env.PORT || 8080);
 // route requests
 app.get("/", function (request, response) {
     response.render("index", {
-        title: "Home Page - Add an Employee!"
+        title: "Home Page - Add an Employee"
     });
 });
 app.get("/index", function (request, response) {

@@ -15,8 +15,7 @@ var Schema = mongoose.Schema;
 
 // define the employeeSchema
 var employeeSchema = new Schema({
-    firstName: String,
-    lastName: String
+    name: String
 });
 
 
